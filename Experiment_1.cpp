@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
 #include <ctime>
 using namespace std;
 
@@ -17,7 +18,6 @@ void complexRec(int n, int depth) {
         }
         p >>= 1;
     }
-
     for (int i = 0; i < n; i++) {
         ops++;
     }
@@ -83,4 +83,4 @@ Using the Master Theorem:
 a = 3, b = 2, f(n) = Θ(n log n)
 log_b(a) = log_2(3) ≈ 1.585
 Since f(n) grows faster than n^(log_b(a)), we apply case 3 of the Master Theorem:
-T(n) = Θ(f(n)) = Θ(n log n)
+T(n) = Θ(f(n)) = Θ(n log n)*/
