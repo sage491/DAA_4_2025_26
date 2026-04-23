@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: pathfinder-visualizer
+    env: node
+    plan: free
+    buildCommand: chmod +x build.sh && ./build.sh
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production

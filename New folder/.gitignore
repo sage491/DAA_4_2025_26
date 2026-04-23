@@ -1,0 +1,32 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build artifacts / binaries
+backend/pathfinder
+backend/pathfinder.exe
+*.o
+*.obj
+*.out
+*.exe
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Runtime temp files
+*.pid
+*.pid.lock
