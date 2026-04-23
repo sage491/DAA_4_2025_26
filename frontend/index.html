@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pathfinding Visualizer</title>
+    <meta name="theme-color" content="#071018" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main class="shell">
+      <section class="panel controls">
+        <div class="eyebrow">Render-ready C++ + Node.js</div>
+        <h1>Pathfinding Visualizer</h1>
+        <p class="lede">Draw maps, compare algorithms, and animate every step from the C++ engine.</p>
+
+        <div class="field">
+          <span>Mode</span>
+          <div class="toggle-row">
+            <label><input type="radio" name="mode" value="single" checked /> Single</label>
+            <label><input type="radio" name="mode" value="compare" /> Compare</label>
+          </div>
+        </div>
+
+        <label class="field" id="singleAlgorithmGroup">
+          <span>Algorithm</span>
+          <select id="algorithmSelect">
+            <option value="astar">A* Search</option>
+            <option value="dijkstra">Dijkstra</option>
+            <option value="bfs">Breadth First Search</option>
+            <option value="dfs">Depth First Search</option>
+          </select>
+        </label>
+
+        <div class="field hidden" id="compareAlgorithmsGroup">
+          <span>Compare Algorithms</span>
+          <div class="check-grid" id="compareCheckboxes">
+            <label><input type="checkbox" value="astar" checked /> A*</label>
+            <label><input type="checkbox" value="dijkstra" checked /> Dijkstra</label>
+            <label><input type="checkbox" value="bfs" checked /> BFS</label>
+            <label><input type="checkbox" value="dfs" /> DFS</label>
+          </div>
+        </div>
+
+        <label class="field">
+          <span>Heuristic</span>
+          <select id="heuristicSelect">
+            <option value="manhattan">Manhattan</option>
+            <option value="euclidean">Euclidean</option>
+          </select>
+        </label>
+
+        <label class="field inline">
+          <input type="checkbox" id="diagonalToggle" />
+          <span>Allow diagonal movement</span>
+        </label>
+
+        <label class="field">
+          <span>Animation speed</span>
+          <input type="range" id="speedRange" min="10" max="180" value="55" />
+          <small id="speedLabel">55</small>
+        </label>
+
+        <label class="field">
+          <span>Weight paint value (Shift + drag)</span>
+          <input type="range" id="weightRange" min="2" max="9" value="5" />
+          <small id="weightLabel">5</small>
+        </label>
+
+        <div class="button-grid">
+          <button id="startBtn" class="btn primary">Start</button>
+          <button id="pauseBtn" class="btn secondary" disabled>Pause</button>
+          <button id="stepBtn" class="btn secondary" disabled>Step</button>
+          <button id="resetBtn" class="btn secondary">Reset Board</button>
+          <button id="clearWallsBtn" class="btn ghost">Clear Walls</button>
+          <button id="randomWallsBtn" class="btn ghost">Random Walls</button>
+          <button id="randomMazeBtn" class="btn ghost">Generate Maze</button>
+          <button id="shareBtn" class="btn ghost">Share Link</button>
+          <button id="savePresetBtn" class="btn ghost">Save Preset</button>
+          <button id="loadPresetBtn" class="btn ghost">Load Preset</button>
+        </div>
+
+        <div class="legend">
+          <span><i class="swatch start"></i>Start</span>
+          <span><i class="swatch end"></i>End</span>
+          <span><i class="swatch wall"></i>Wall</span>
+          <span><i class="swatch visit"></i>Visited</span>
+          <span><i class="swatch path"></i>Path</span>
+          <span><i class="swatch weight"></i>Weighted</span>
+        </div>
+
+        <p id="status" class="status" aria-live="polite">Ready to run.</p>
+      </section>
+
+      <section class="panel board-panel">
+        <div class="board-header">
+          <div>
+            <div class="eyebrow">Workspace</div>
+            <h2>Interactive Grid</h2>
+          </div>
+          <div class="hint">Drag start/end, drag for walls, Shift-drag for weights.</div>
+        </div>
+        <div id="grid" class="grid" aria-label="Pathfinding grid"></div>
+      </section>
+
+      <section class="panel stats">
+        <div class="eyebrow">Run output</div>
+        <h2>Metrics</h2>
+        <div id="summary" class="card summary">No run yet.</div>
+        <div id="runtimeStats" class="card stats-list"></div>
+        <h3>Comparison Ranking</h3>
+        <div id="ranking" class="card stats-list">No ranking yet.</div>
+        <div class="card">
+          <div class="tiny-label">Start</div>
+          <div id="startLabel">Row 3, Col 3</div>
+          <div class="tiny-label">End</div>
+          <div id="endLabel">Row 16, Col 16</div>
+        </div>
+      </section>
+    </main>
+
+    <div id="overlay" class="overlay hidden" aria-hidden="true">
+      <div class="spinner"></div>
+      <p>Running pathfinder...</p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
